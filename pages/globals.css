@@ -1,0 +1,29 @@
+body,
+html {
+  margin: 0;
+  padding: 8px;
+  font-family: sans-serif;
+  color-scheme: light dark;
+  background-color: var(--background-color);
+  color: var(--text-color-primary);
+}
+
+.secondary {
+  color: var(--text-color-secondary);
+}
+
+@media (prefers-color-scheme: light) {
+  :where(html) {
+    --background-color: #f8fafc;
+    --text-color-primary: #0d1117;
+    --text-color-secondary: #475569;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(html) {
+    --background-color: #0d1117;
+    --text-color-primary: #f8fafc;
+    --text-color-secondary: #cbd5e1;
+  }
+}
