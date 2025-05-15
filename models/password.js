@@ -1,6 +1,13 @@
 import bcryptjs from "bcryptjs";
+import { ValidationError } from "infra/errors";
 
 async function hash(password) {
+  if (password === undefined || password === null) {
+    throw new ValidationError({
+      message: "Ops, parece que se esqueceu da senha.",
+    });
+  }
+
   const rounds = getNumberOfRounds();
   const passwordWithPepper = addPepper(password);
   return await bcryptjs.hash(passwordWithPepper, rounds);
