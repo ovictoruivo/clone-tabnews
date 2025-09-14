@@ -5,10 +5,10 @@ import crypto from "node:crypto";
 const EXPIRATION_IN_MILISECONDS = 60 * 60 * 24 * 30 * 1000; // 30 Days
 
 async function findOneValidByToken(sessionToken) {
-  const sessionFound = await runInsertQuery(sessionToken);
+  const sessionFound = await runSelectQuery(sessionToken);
   return sessionFound;
 
-  async function runInsertQuery(sessionToken) {
+  async function runSelectQuery(sessionToken) {
     const results = await database.query({
       text: `
         SELECT
