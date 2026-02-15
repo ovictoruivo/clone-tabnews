@@ -92,6 +92,15 @@ async function getLastEmail() {
   return lastEmailItem;
 }
 
+function extractUUID(text) {
+  const uuidV4Regex =
+    /\b[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\b/i;
+
+  const match = text.match(uuidV4Regex);
+
+  return match[0];
+}
+
 const orchestrator = {
   waitForAllServices,
   clearDatabase,
@@ -100,6 +109,7 @@ const orchestrator = {
   createSession,
   deleteAllEmails,
   getLastEmail,
+  extractUUID,
 };
 
 export default orchestrator;
