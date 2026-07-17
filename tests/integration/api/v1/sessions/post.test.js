@@ -38,6 +38,7 @@ describe("POST /api/v1/sessions", () => {
         status_code: 401,
       });
     });
+
     test("With correct `email` but incorrect `password`", async () => {
       await orchestrator.createUser({
         email: "email.correto@mail.com",
@@ -65,6 +66,7 @@ describe("POST /api/v1/sessions", () => {
         status_code: 401,
       });
     });
+
     test("With incorrect `email` and incorrect `password`", async () => {
       await orchestrator.createUser();
 
@@ -90,11 +92,14 @@ describe("POST /api/v1/sessions", () => {
         status_code: 401,
       });
     });
+
     test("With correct `email` and correct `password`", async () => {
       const createdUser = await orchestrator.createUser({
         email: "tudo.correto@mail.com",
         password: "tudocorreto",
       });
+
+      await orchestrator.activateUser(createdUser);
 
       const response = await fetch("http://localhost:3000/api/v1/sessions", {
         method: "POST",
